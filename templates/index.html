@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}PC Manager{% endblock %}
+{% block bodywrap %}
+    <div class="container-fluid page-title">
+        <div class="container-fluid dashboard_text"><p class="h1 font-weight-bold">Dashboard</p></div>
+        <div class="container-fluid new_device"><a class="btn btn-primary">Add New Device</a></div>
+    </div>
+    {% if devices %}
+
+
+        <div class="card-deck card-wrap clearfix">
+            {% for device in devices %}
+                <div class="container-fluid device_wrap clearfix">
+                    <div class="card pc_info">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ device.name }}</h5>
+                            <p class="card-text">{{ device.customer_name }}</p>
+                            <p class="card-text">
+                            <ul class="nav flex-column">
+                                <li class="nav-item"><strong><u>PC Specs</u></strong></li>
+                                <li><strong>CPU: </strong>{{ device.pc_cpu }}</li>
+                                <li><strong>RAM: </strong>{{ device.pc_ram }}</li>
+                                <li><strong>HD: </strong> {{ device.pc_hd }}</li>
+                                <li><strong>OS: </strong>{{ device.pc_os }}</li>
+                                <li><strong>Windows Key: </strong>{{ device.pc_windows_key }}</li>
+                                <li><strong>GPU: </strong>{{ device.pc_gpu }}</li>
+                                <br/>
+                                <li><strong><u>Motherboard Specs</u></strong></li>
+                                <li><strong>Brand: </strong>{{ device.motherboard_brand }}</li>
+                                <li><strong>Name: </strong>{{ device.motherboard_name }}</li>
+                                <li><strong>Serial: </strong>{{ device.motherboard_serial }}</li>
+
+                                <li><strong>Serial/Service Tag: </strong>{{ device.pc_service_tag }}</li>
+
+                            </ul>
+                            </p>
+                            <a href="#" class="btn btn-primary">View/Edit</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Asset ID - {{ device.asset_id }}</small> |
+                            <small class="text-muted">Customer ID - {{ device.customer_id }}</small> |
+                            <small class="text-muted">Added - {{ device.date }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    {% endif %}
+
+
+
+{% endblock %}
